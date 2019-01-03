@@ -8,5 +8,5 @@ Convert binance history XLSX to console printed transaction list per currency wi
 
 with
 
-`input_file path` : the path of binance TradeHistory.xlsx export file
-`transaction_fee` : optional binance fee in % on reach transaction (ex: `0.05`)
+- `input_file path` : the path of binance TradeHistory.xlsx export file
+- `transaction_fee` : optional binance fee in % on reach transaction (ex: `0.05`)
