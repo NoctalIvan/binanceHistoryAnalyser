@@ -1,0 +1,23 @@
+{
+  "name": "binancehistoryanalyser",
+  "version": "1.0.0",
+  "description": "Convert binance history XLSX to transaction list per currency with clear vision of gains &amp; losses",
+  "main": "index.js",
+  "dependencies": {
+    "excelcsv": "^0.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NoctalIvan/binanceHistoryAnalyser.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NoctalIvan/binanceHistoryAnalyser/issues"
+  },
+  "homepage": "https://github.com/NoctalIvan/binanceHistoryAnalyser#readme"
+}
