@@ -1,3 +1,4 @@
 node_modules
 TradeHistory.xlsx
 package-lock.json
+.DS_Store

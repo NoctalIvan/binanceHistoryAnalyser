@@ -1,17 +1,18 @@
 // import file
+require('colors')
 const ExcelCSV = require('excelcsv')
 const parser = new ExcelCSV(process.argv[2])
 const tax = process.argv[3] ? 2 * process.argv[3] / 100 : 0
 const csv = parser.init()
 const lines = csv
     .split('\n')
-    .slice(1)
     .map(line => line
         .split(',').map(value => value
             .slice(1, -1)
         )
     )
     .reverse()
+    .slice(1, -1)
 
 // group by currency
 const transactions = {}
@@ -22,6 +23,14 @@ lines.forEach(line => {
         transactions[line[1]].push(line)
     }
 })
+
+const displayPercent = (n) => {
+    if(n > 0) {
+        return ((n * 100).toFixed(2) + '%').cyan
+    } else {
+        return ((n * 100).toFixed(2) + '%').red
+    }
+}
 
 const result = {}
 for(symbol in transactions) {
@@ -45,15 +54,15 @@ for(symbol in transactions) {
     let lastBuy = undefined
     for(let i = 0; i < trans.length; i ++) {
         const line = trans[i]
-        console.log(`${
+        console.log((`${
             line[0]
         } : ${
             line[2] == 'BUY' ? 'BUY ' : 'SELL'
         } ${
             (+line[4]).toFixed(2)} @ ${(+line[3]).toFixed(8)
         } ${
-            lastBuy && line[2] == 'SELL' ? '=> ' + (100 * (+line[3] / lastBuy - 1 - tax)).toFixed(2) + '%' : ''
-        }`)
+            lastBuy && line[2] == 'SELL' ? '=> ' + displayPercent(+line[3] / lastBuy - 1 - tax) : ''
+        }`).grey)
 
         if(line[2] == 'BUY') {
             lastBuy = +line[3]
